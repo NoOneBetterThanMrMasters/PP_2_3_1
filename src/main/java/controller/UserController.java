@@ -20,7 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String getIndex(Model model){
         model.addAttribute("users", userService.getListUsers());
         return "index";
@@ -40,7 +40,7 @@ public class UserController {
     @PostMapping
     public String create(@ModelAttribute("user") User user) {
         userService.add(user);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("/{id}/edit")
@@ -52,12 +52,12 @@ public class UserController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id ) {
         userService.update(user, id);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);
-        return "redirect:/index";
+        return "redirect:/";
     }
 }
